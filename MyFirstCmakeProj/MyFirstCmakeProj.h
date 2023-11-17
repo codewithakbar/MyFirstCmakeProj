@@ -8,5 +8,6 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <sstream>
 
 // TODO: установите здесь ссылки на дополнительные заголовки, требующиеся для программы.
