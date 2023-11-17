@@ -18,6 +18,9 @@ using namespace std;
 #define OKEGREEN    "\033[38;2;0;128;0m"
 #define LIGHT_GREEN "\033[92m"
 #define BOLD_BLUE   "\033[1;34m"
+#define ORANGE      "\033[38;2;255;165;0m"
+#define BOLD_ORANGE "\033[1;38;2;255;165;0m"
+
 
 
 string Sorov; // siklni to'xtatish uchun o'zgarivchan
@@ -557,6 +560,17 @@ void getSatipoffMenu() {
 	cout << RED << "\t\t\t" << "      ) || (   ) |   | |      | |   | (      | |   | || (      | (" << RESET << endl;
 	cout << RED << "\t\t\t" << "/\\____) || )   ( |   | |   ___) (___| )      | (___) || )      | )" << RESET << endl;
 	cout << RED << "\t\t\t" << "\\_______)|/     \\|   )_(   \\_______/|/       (_______)|/       |/" << RESET << endl;
+
+	cout << "\n\n";
+	
+	cout    << BOLD_ORANGE << "\t\t\t" << "OOOOOOOOd       OOOO     OOOOd    OOOO    dOOOOOO    OOOO    dOOOO" << endl
+			<< BOLD_ORANGE << "\t\t\t" << "OOOOOOOOOOO    OOOOOO    OOOOOO   OOOO  OOOOOOOOOOO  OOOO    OOOOd" << endl
+			<< BOLD_ORANGE << "\t\t\t" << "OOOO   OOOO   dOOOOOOd   OOOOOOO  OOOO OOOOd   OOOOO OOOO    OOOOO" << endl
+			<< BOLD_ORANGE << "\t\t\t" << "OOOOOOOOOOO  dOOOOOOOOd  OOOOdOOOOOOOO OOOO          OOOOOOOOOOOOO" << endl
+			<< BOLD_ORANGE << "\t\t\t" << "OOOOOOOOO    OOOd  OOOO  OOOO dOOOOOOO OOOO          OOOOOOOOOOOOd" << endl
+			<< BOLD_ORANGE << "\t\t\t" << "OOOO OOOOO  OOOOOOOOOOOO OOOO   OOOOOO dOOOOOdOOOOOO OOOO    OOOOO" << endl
+			<< BOLD_ORANGE << "\t\t\t" << "OOOO  OOOOddOOOO    OOOOOOOOO    OOOOO   OOOOOOOOOO  OOOO    OOOOd" << endl;
+
 
 }
 
