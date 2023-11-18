@@ -9,5 +9,7 @@
 #include <vector>
 #include <algorithm>
 #include <sstream>
+#include <Windows.h>
+
 
 // TODO: установите здесь ссылки на дополнительные заголовки, требующиеся для программы.

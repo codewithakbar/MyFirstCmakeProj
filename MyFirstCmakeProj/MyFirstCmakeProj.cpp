@@ -1,6 +1,10 @@
-﻿
+﻿// Copyright (c) 2023 Akbar Satipov (codewithakbar)
 
-// Copyright (c) 2023 Akbar Satipov (codewithakbar)
+// Diqqat! Gavno kod bo'lib go'rinishi mumkin lekin 
+// man hozircha majburman shunatib kod yozib durisha.
+// Mualliflik huquqiga qattiq rioya qilinadi
+// Agar kimda-kim muallifdan so'ramasdan kodni ishlatsa:
+// Javobgarlikka tortiladi.
 
 #include "MyFirstCmakeProj.h"
 
@@ -22,444 +26,511 @@ using namespace std;
 #define BOLD_ORANGE "\033[1;38;2;255;165;0m"
 
 
-
 string Sorov; // siklni to'xtatish uchun o'zgarivchan
 string SAV; // siklni to'xtatish uchun o'zgarivchan
 
+// raqam bilan textni xoshroy chiqaradon funksiya
+string getNumberAndText(string son, const string& text) {
+	stringstream ss;
+	ss << BLUE << "\t\t\t[" << WHITE << son << RESET << BLUE << "]" << "  " << OKEGREEN << text << RESET << "\n";
 
-// Birinchi Topshiriq Misollari Jamlanmasi!
-class BirinchiTopshiriq
-{
-public:
-	struct Nuqta
-	{
-		double x;
-		double y;
-	};
+	return ss.str();
 
-	// Sonning P-darajasini topuvchi funksiya (Misol 1)
-	double darajaTop(int son, int p)
-	{
-		return pow(son, p);
-	};
+}
 
-	// P sonini oxiridan L sonini qo‘shuvchi funksiya (Misol 2)
-	double qoshuvchi(double P, double L)
-	{
-		return P + L;
+
+int TOPSHIRIQ_RAQAMI;
+int MAVZU_RAQAMI;
+
+
+// komputer nomini chiqaradi (admin@kompnomi:#>)
+int getCommandLine() {
+
+	char computerName[MAX_COMPUTERNAME_LENGTH + 1];
+	DWORD size = sizeof(computerName);
+
+	if (!GetComputerName(computerName, &size)) {
+		DWORD error = GetLastError();
+		cerr << "Kompyuter nomi xato: " + error << endl;
+		return 1;
 	}
 
-	// Gipotenuzani topuvchi funksiya (Misol 3)
-	double gipotenuzaTop(int katet1, int katet2)
+	cout << RED << "\nadmin@" << computerName << RESET << ":#> ";
+}
+
+
+// MAVZU 5
+namespace BeshinchiMavzu {
+
+	// Beshinchi Mavzu Birinchi Topshiriq Misollari Jamlanmasi!
+	class BirinchiTopshiriq
 	{
-		double gipotenuza = sqrt(pow(katet1, 2) + pow(katet2, 2));
-		return gipotenuza;
-	}
-
-	// Nuqtalar orasidagi masofani topuvchi funksiya (Misol 4)
-	double masofaTop(int x1, int y1, int x2, int y2)
-	{
-		double masofa = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
-		return masofa;
-	}
-
-	// Oradagi sonni o'chiruvchi funksiya (Misol 5)
-	int ortaDelete(int son)
-	{
-
-		string numStr = to_string(son);
-
-		string resultStr;
-
-		for (int i = 1; i < numStr.length() - 1; ++i)
+	public:
+		struct Nuqta
 		{
-			if (numStr[i - 1] - '0' + numStr[i + 1] - '0' != numStr[i] - '0')
+			double x;
+			double y;
+		};
+
+		// Sonning P-darajasini topuvchi funksiya (Misol 1)
+		double darajaTop(int son, int p)
+		{
+			return pow(son, p);
+		};
+
+		// P sonini oxiridan L sonini qo‘shuvchi funksiya (Misol 2)
+		double qoshuvchi(double P, double L)
+		{
+			return P + L;
+		}
+
+		// Gipotenuzani topuvchi funksiya (Misol 3)
+		double gipotenuzaTop(int katet1, int katet2)
+		{
+			double gipotenuza = sqrt(pow(katet1, 2) + pow(katet2, 2));
+			return gipotenuza;
+		}
+
+		// Nuqtalar orasidagi masofani topuvchi funksiya (Misol 4)
+		double masofaTop(int x1, int y1, int x2, int y2)
+		{
+			double masofa = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+			return masofa;
+		}
+
+		// Oradagi sonni o'chiruvchi funksiya (Misol 5)
+		int ortaDelete(int son)
+		{
+
+			string numStr = to_string(son);
+
+			string resultStr;
+
+			for (int i = 1; i < numStr.length() - 1; ++i)
 			{
-				resultStr += numStr[i];
+				if (numStr[i - 1] - '0' + numStr[i + 1] - '0' != numStr[i] - '0')
+				{
+					resultStr += numStr[i];
+				}
 			}
+
+			resultStr = numStr[0] + resultStr + numStr[numStr.length() - 1];
+
+			return stoi(resultStr);
 		}
 
-		resultStr = numStr[0] + resultStr + numStr[numStr.length() - 1];
-
-		return stoi(resultStr);
-	}
-
-	// Tub sonni tekshiruvchi funksiya (Misol6)
-	bool tubSon(int n)
-	{
-		if (n < 2)
+		// Tub sonni tekshiruvchi funksiya (Misol6)
+		bool tubSon(int n)
 		{
-			return false;
-		}
-
-		for (int i = 2; i <= sqrt(n); ++i)
-		{
-			if (n % i == 0)
+			if (n < 2)
 			{
 				return false;
 			}
-		}
 
-		return true;
-	}
-
-	// Yig'indisiga teng bo'lgan ikkita tub sonni tekshiruvchi funksiya (Misol 6)
-	bool yigindisiTubSon(int N)
-	{
-		for (int i = 2; i <= N / 2; ++i)
-		{
-			int j = N - i;
-			if (tubSon(i) && tubSon(j))
+			for (int i = 2; i <= sqrt(n); ++i)
 			{
-				return true;
+				if (n % i == 0)
+				{
+					return false;
+				}
 			}
+
+			return true;
 		}
 
-		return false;
-	}
-
-	// Uchtasi bir to'g'ri chiziqda yotmaydigan funksiya (Misol 7)
-	bool togriChiziqdaYotmaydi(Nuqta A, Nuqta B, Nuqta C)
-	{
-		// nuqtani tekshirish
-		if ((A.x == B.x && A.y == B.y) || (A.x == C.x && A.y == C.y) || (B.x == C.x && B.y == C.y))
+		// Yig'indisiga teng bo'lgan ikkita tub sonni tekshiruvchi funksiya (Misol 6)
+		bool yigindisiTubSon(int N)
 		{
-			cout << "Nuqtalarning hammasi bir biriga to'g'ri qo'yilgan, chiziq to'g'ri emas." << endl;
-			return false;
-		}
-
-		double a = B.y - A.y;
-		double b = A.x - B.x;
-		double c = A.x * (A.y - B.y) + A.y * (B.x - A.x);
-
-		// nuqtaning qiymatini topamiz
-		double qiymatC = a * C.x + b * C.y;
-
-		if ((qiymatC - c) == 0)
-		{
-			cout << "Nuqta chiziq ustida joylashgan, chiziq to'g'ri emas." << endl;
-			return false;
-		}
-
-		return true;
-	}
-
-	// Sonni tekshiruvchi funksiya (Misol 8)
-	int bolinuvchiSon(int son)
-	{
-		if (son % 11 == 0)
-		{
-			cout << son << " soni bo'linadi";
-			return 1;
-		}
-		else
-		{
-			cout << son << " soni bo'linmaydi!";
-			return 2;
-		}
-	}
-
-	// Sonni almashturuvchi funksiya (Misol 9)
-	int replaceDigit(int son, int k, int n)
-	{
-		int natija = 0;
-		int kofitsent = 1;
-
-		while (son != 0)
-		{
-			int raqam = son % 10;
-			if (raqam == k)
+			for (int i = 2; i <= N / 2; ++i)
 			{
-				natija += n * kofitsent;
+				int j = N - i;
+				if (tubSon(i) && tubSon(j))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		// Uchtasi bir to'g'ri chiziqda yotmaydigan funksiya (Misol 7)
+		bool togriChiziqdaYotmaydi(Nuqta A, Nuqta B, Nuqta C)
+		{
+			// nuqtani tekshirish
+			if ((A.x == B.x && A.y == B.y) || (A.x == C.x && A.y == C.y) || (B.x == C.x && B.y == C.y))
+			{
+				cout << "Nuqtalarning hammasi bir biriga to'g'ri qo'yilgan, chiziq to'g'ri emas." << endl;
+				return false;
+			}
+
+			double a = B.y - A.y;
+			double b = A.x - B.x;
+			double c = A.x * (A.y - B.y) + A.y * (B.x - A.x);
+
+			// nuqtaning qiymatini topamiz
+			double qiymatC = a * C.x + b * C.y;
+
+			if ((qiymatC - c) == 0)
+			{
+				cout << "Nuqta chiziq ustida joylashgan, chiziq to'g'ri emas." << endl;
+				return false;
+			}
+
+			return true;
+		}
+
+		// Sonni tekshiruvchi funksiya (Misol 8)
+		int bolinuvchiSon(int son)
+		{
+			if (son % 11 == 0)
+			{
+				cout << son << " soni bo'linadi";
+				return 1;
 			}
 			else
 			{
-				natija += raqam * kofitsent;
+				cout << son << " soni bo'linmaydi!";
+				return 2;
 			}
-			kofitsent *= 10;
-			son /= 10;
 		}
 
-		return natija;
-	}
-
-	// Sonni raqamlarini kamayish tartibida saralovchi funksiya (Misol 10)
-	int reverseSort(int number)
-	{
-		vector<int> digits;
-
-		while (number != 0)
+		// Sonni almashturuvchi funksiya (Misol 9)
+		int replaceDigit(int son, int k, int n)
 		{
-			digits.push_back(number % 10);
-			number /= 10;
+			int natija = 0;
+			int kofitsent = 1;
+
+			while (son != 0)
+			{
+				int raqam = son % 10;
+				if (raqam == k)
+				{
+					natija += n * kofitsent;
+				}
+				else
+				{
+					natija += raqam * kofitsent;
+				}
+				kofitsent *= 10;
+				son /= 10;
+			}
+
+			return natija;
 		}
 
-		sort(digits.begin(), digits.end(), greater<int>());
-
-		int result = 0;
-		int multiplier = 1;
-
-		for (int i = 0; i < digits.size(); ++i)
+		// Sonni raqamlarini kamayish tartibida saralovchi funksiya (Misol 10)
+		int reverseSort(int number)
 		{
-			result += digits[i] * multiplier;
-			multiplier *= 10;
+			vector<int> digits;
+
+			while (number != 0)
+			{
+				digits.push_back(number % 10);
+				number /= 10;
+			}
+
+			sort(digits.begin(), digits.end(), greater<int>());
+
+			int result = 0;
+			int multiplier = 1;
+
+			for (int i = 0; i < digits.size(); ++i)
+			{
+				result += digits[i] * multiplier;
+				multiplier *= 10;
+			}
+
+			return result;
 		}
 
-		return result;
-	}
-
-	// Uchburchak yuzasini hisoblash uchun funksiya (Misol 11)
-	double triangleArea(double a, double b, double c)
-	{
-		double s = (a + b + c) / 2.0;
-		double area = sqrt(s * (s - a) * (s - b) * (s - c));
-
-		return area;
-	}
-
-	// Beshburchak yuzasini hisoblidon funksiya (Misol 12)
-	double pentagonArea(double a, double b, double c, double d, double e)
-	{
-
-		double areaABC = triangleArea(a, b, c);
-		double areaACD = triangleArea(a, c, d);
-		double areaADE = triangleArea(a, d, e);
-
-		double area = areaABC + areaACD + areaADE;
-
-		return area;
-	}
-
-	void Misol1()
-	{
-
-		cout << "Q sonini P darajasini topuvchi funksiya. " << endl;
-
-		int son, daraja;
-		cout << "Iltimos, sonni kiriting: ";
-		cin >> son;
-		cout << "Iltimos, darajani kiriting: ";
-		cin >> daraja;
-
-		double natija = darajaTop(son, daraja);
-
-		cout << son << "ning " << daraja << " darajasi = " << natija << endl;
-	}
-
-	void Misol2()
-	{
-
-		int P, L;
-
-		cout << "Iltimos, P sonini kiriting: ";
-		cin >> P;
-		cout << "Iltimos, L sonini kiriting: ";
-		cin >> L;
-
-		double natija = qoshuvchi(P, L);
-
-		cout << "Natija: " << natija << endl;
-	}
-
-	void Misol3()
-	{
-
-		int katet1, katet2;
-
-		cout << "Iltimos, birinchi katetni kiriting: ";
-		cin >> katet1;
-		cout << "Iltimos, ikkinchi katetni kiriting: ";
-		cin >> katet2;
-
-		double gipotenuza = gipotenuzaTop(katet1, katet2);
-
-		cout << "Gipotenuza: " << gipotenuza << endl;
-	}
-
-	void Misol4()
-	{
-
-		int x1, y1, x2, y2;
-		cout << "Iltimos, birinchi nuqta koordinatalarini kiriting (x1 y1): ";
-		cin >> x1 >> y1;
-		cout << "Iltimos, ikkinchi nuqta koordinatalarini kiriting (x2 y2): ";
-		cin >> x2 >> y2;
-
-		double masofa = masofaTop(x1, y1, x2, y2);
-
-		cout << "Nuqtalar orasidagi masofa: " << masofa << endl;
-	}
-
-	void Misol5()
-	{
-
-		int son;
-		cout << "Iltimos, uch xonali son kiriting: ";
-		cin >> son;
-
-		int ochiriladiganRaqam = ortaDelete(son);
-
-		cout << "Natija: " << ochiriladiganRaqam << endl;
-	}
-
-	void Misol6()
-	{
-
-		cout << "Berilgan N soni ikkita tub sonni yig‘indisi bo‘lishini tekshiruvchi funksiya tuzing." << endl;
-
-		int N;
-		cout << "Iltimos, N son kiriting: ";
-		cin >> N;
-
-		bool natija = yigindisiTubSon(N);
-
-		if (natija)
+		// Uchburchak yuzasini hisoblash uchun funksiya (Misol 11)
+		double triangleArea(double a, double b, double c)
 		{
-			cout << N << " soni ikkita tub sonning yig'indisi" << endl;
+			double s = (a + b + c) / 2.0;
+			double area = sqrt(s * (s - a) * (s - b) * (s - c));
+
+			return area;
 		}
-		else
+
+		// Beshburchak yuzasini hisoblidon funksiya (Misol 12)
+		double pentagonArea(double a, double b, double c, double d, double e)
 		{
-			cout << N << " soni ikkita tub sonning yig'indisi emas" << endl;
+
+			double areaABC = triangleArea(a, b, c);
+			double areaACD = triangleArea(a, c, d);
+			double areaADE = triangleArea(a, d, e);
+
+			double area = areaABC + areaACD + areaADE;
+
+			return area;
 		}
-	}
 
-	void Misol7()
-	{
-
-		Nuqta A, B, C;
-
-		cout << "Iltimos, A nuqtasini kiriting (x y): ";
-		cin >> A.x >> A.y;
-		cout << "Iltimos, B nuqtasini kiriting (x y): ";
-		cin >> B.x >> B.y;
-		cout << "Iltimos, C nuqtasini kiriting (x y): ";
-		cin >> C.x >> C.y;
-
-		bool natija = togriChiziqdaYotmaydi(A, B, C);
-
-		if (natija)
+		void Misol1()
 		{
-			cout << "Uchta nuqta bir to'g'ri chiziqda yotmaydi." << endl;
+
+			// cout << "Q sonini P darajasini topuvchi funksiya. " << endl;
+			cout << YELLOW << "#= = =///////\t\t Q sonini P darajasini topuvchi funksiya.!\t\t ////// = = =#" << RESET << "\n\n\n";
+
+			int son, daraja;
+			getCommandLine();
+			cout << "Iltimos, sonni kiriting: ";
+			cin >> son;
+			getCommandLine();
+			cout << "Iltimos, darajani kiriting: ";
+			cin >> daraja;
+
+			double natija = darajaTop(son, daraja);
+
+			cout << son << "ning " << daraja << " darajasi = " << natija << endl;
 		}
-		else
+
+		void Misol2()
 		{
-			cout << "Uchta nuqta bir to'g'ri chiziqda yotadi yoki chiziq to'g'ri emas." << endl;
+
+			int P, L;
+
+			getCommandLine();
+			cout << "Iltimos, P sonini kiriting: ";
+			cin >> P;
+			getCommandLine();
+			cout << "Iltimos, L sonini kiriting: ";
+			cin >> L;
+
+			double natija = qoshuvchi(P, L);
+
+			cout << "Natija: " << natija << endl;
 		}
-	}
 
-	void Misol8()
-	{
+		void Misol3()
+		{
 
-		int son;
-		cout << "Son kiriting: ";
-		cin >> son;
+			int katet1, katet2;
 
-		int natija = bolinuvchiSon(son);
+			getCommandLine();
+			cout << "Iltimos, birinchi katetni kiriting: ";
+			cin >> katet1;
+			getCommandLine();
+			cout << "Iltimos, ikkinchi katetni kiriting: ";
+			cin >> katet2;
 
-		cout << "Natija: " << natija << endl;
-	}
+			double gipotenuza = gipotenuzaTop(katet1, katet2);
 
-	void Misol9()
-	{
+			cout << "Gipotenuza: " << gipotenuza << endl;
+		}
 
-		int son, k, n;
+		void Misol4()
+		{
 
-		cout << "Sonni kiriting: ";
-		cin >> son;
+			int x1, y1, x2, y2;
+			getCommandLine();
+			cout << "Iltimos, birinchi nuqta koordinatalarini kiriting (x1 y1): ";
+			cin >> x1 >> y1;
+			getCommandLine();
+			cout << "Iltimos, ikkinchi nuqta koordinatalarini kiriting (x2 y2): ";
+			cin >> x2 >> y2;
 
-		cout << "Olmashtirish uchun raqam kiriting (K): ";
-		cin >> k;
+			double masofa = masofaTop(x1, y1, x2, y2);
 
-		cout << "Toza raqam kiriting (N): ";
-		cin >> n;
+			cout << "Nuqtalar orasidagi masofa: " << masofa << endl;
+		}
 
-		int natija = replaceDigit(son, k, n);
-		cout << "Natija: " << natija << endl;
-	}
+		void Misol5()
+		{
 
-	void Misol10()
-	{
+			int son;
+			getCommandLine();
+			cout << "Iltimos, uch xonali son kiriting: ";
+			cin >> son;
 
-		int son;
+			int ochiriladiganRaqam = ortaDelete(son);
 
-		cout << "Sonni kiriting: ";
-		cin >> son;
+			getCommandLine();
+			cout << "Natija: " << ochiriladiganRaqam << endl;
+		}
 
-		int tartiblanganSon = reverseSort(son);
-		cout << "Raqamlari kamayish tartibida saralgan son: " << tartiblanganSon << endl;
-	}
+		void Misol6()
+		{
 
-	void Misol_11()
-	{
+			cout << "Berilgan N soni ikkita tub sonni yig‘indisi bo‘lishini tekshiruvchi funksiya tuzing." << endl;
 
-		double a, b, c;
+			int N;
+			getCommandLine();
+			cout << "Iltimos, N son kiriting: ";
+			cin >> N;
 
-		cout << "Uchburchakning a tomonini kiriting: ";
-		cin >> a;
+			bool natija = yigindisiTubSon(N);
 
-		cout << "Uchburchakning b tomonini kiriting: ";
-		cin >> b;
+			if (natija)
+			{
+				getCommandLine();
+				cout << N << " soni ikkita tub sonning yig'indisi" << endl;
+			}
+			else
+			{
+				getCommandLine();
+				cout << N << " soni ikkita tub sonning yig'indisi emas" << endl;
+			}
+		}
 
-		cout << "Uchburchakning c tomonini kiriting: ";
-		cin >> c;
+		void Misol7()
+		{
 
-		double yuza = triangleArea(a, b, c);
-		cout << "Uchburchakning yuzasi: " << yuza << endl;
-	}
+			Nuqta A, B, C;
 
-	void Misol_12()
-	{
+			getCommandLine();
+			cout << "Iltimos, A nuqtasini kiriting (x y): ";
+			cin >> A.x >> A.y;
+			getCommandLine();
+			cout << "Iltimos, B nuqtasini kiriting (x y): ";
+			cin >> B.x >> B.y;
+			getCommandLine();
+			cout << "Iltimos, C nuqtasini kiriting (x y): ";
+			cin >> C.x >> C.y;
 
-		double a, b, c, d, e;
+			bool natija = togriChiziqdaYotmaydi(A, B, C);
 
-		cout << "Beshburchakning a tomonini kiriting: ";
-		cin >> a;
+			if (natija)
+			{
+				getCommandLine();
+				cout << "Uchta nuqta bir to'g'ri chiziqda yotmaydi." << endl;
+			}
+			else
+			{
+				cout << "Uchta nuqta bir to'g'ri chiziqda yotadi yoki chiziq to'g'ri emas." << endl;
+			}
+		}
 
-		cout << "Beshburchakning b tomonini kiriting: ";
-		cin >> b;
+		void Misol8()
+		{
 
-		cout << "Beshburchakning c tomonini kiriting: ";
-		cin >> c;
+			int son;
+			getCommandLine();
+			cout << "Son kiriting: ";
+			cin >> son;
 
-		cout << "Beshburchakning d tomonini kiriting: ";
-		cin >> d;
+			int natija = bolinuvchiSon(son);
 
-		cout << "Beshburchakning e tomonini kiriting: ";
-		cin >> e;
+			getCommandLine();
+			cout << "Natija: " << natija << endl;
+		}
 
-		double beshburchakYuza = pentagonArea(a, b, c, d, e);
-		cout << "Beshburchakning yuzasi: " << beshburchakYuza << endl;
-	}
-};
+		void Misol9()
+		{
+
+			int son, k, n;
+
+			getCommandLine();
+			cout << "Sonni kiriting: ";
+			cin >> son;
+
+			getCommandLine();
+			cout << "Olmashtirish uchun raqam kiriting (K): ";
+			cin >> k;
+
+			getCommandLine();
+			cout << "Toza raqam kiriting (N): ";
+			cin >> n;
+
+			int natija = replaceDigit(son, k, n);
+			getCommandLine();
+			cout << "Natija: " << natija << endl;
+		}
+
+		void Misol10()
+		{
+
+			int son;
+
+			getCommandLine();
+			cout << "Sonni kiriting: ";
+			cin >> son;
+
+			int tartiblanganSon = reverseSort(son);
+			getCommandLine();
+			cout << "Raqamlari kamayish tartibida saralgan son: " << tartiblanganSon << endl;
+		}
+
+		void Misol_11()
+		{
+
+			double a, b, c;
+
+			getCommandLine();
+			cout << "Uchburchakning a tomonini kiriting: ";
+			cin >> a;
+
+			getCommandLine();
+			cout << "Uchburchakning b tomonini kiriting: ";
+			cin >> b;
+
+			getCommandLine();
+			cout << "Uchburchakning c tomonini kiriting: ";
+			cin >> c;
+
+			double yuza = triangleArea(a, b, c);
+			getCommandLine();
+			cout << "Uchburchakning yuzasi: " << yuza << endl;
+		}
+
+		void Misol_12()
+		{
+
+			double a, b, c, d, e;
+
+			getCommandLine();
+			cout << "Beshburchakning a tomonini kiriting: ";
+			cin >> a;
+
+			getCommandLine();
+			cout << "Beshburchakning b tomonini kiriting: ";
+			cin >> b;
+
+			getCommandLine();
+			cout << "Beshburchakning c tomonini kiriting: ";
+			cin >> c;
+
+			getCommandLine();
+			cout << "Beshburchakning d tomonini kiriting: ";
+			cin >> d;
+
+			getCommandLine();
+			cout << "Beshburchakning e tomonini kiriting: ";
+			cin >> e;
+
+			double beshburchakYuza = pentagonArea(a, b, c, d, e);
+			getCommandLine();
+			cout << "Beshburchakning yuzasi: " << beshburchakYuza << endl;
+		}
+	};
+
+}
 
 
 
-
-
-
-
-void BirinchiTopshiriqniYuklash()
+void BeshinchiMavzuniYuklash()
 {
 
-	BirinchiTopshiriq birinchi;
+	BeshinchiMavzu::BirinchiTopshiriq birinchi;
 
 	int MISOL_RAQAMI;
 
-	cout << "1) Q sonini P darajasini topuvchi funksiya tuzing." << endl;
-	cout << "2) P sonini oxiridan L sonini qo‘shuvchi funksiya tuzing." << endl;
-	cout << "3) Berilgan to‘g‘ri burchakli uchburchakning katetlari yordamida gipotenuzasini topuvchi funksiya tuzing" << endl;
-	cout << "4) Berilgan ikki nuqtaning koordinatasi asosida ular orasidagi masofani topuvchi funksiya tuzing" << endl;
-	cout << "5) Berilgan sondagi qo‘shni raqamlarining raqamlarining yig‘indisiga teng bo‘lgan raqamni o‘chirivchi funksiya tuzing.(Uch xonali son misolida: 143 Natija 13)" << endl;
-	cout << "6) Berilgan N soni ikkita tub sonni yig‘indisi bo‘lishini tekshiruvchi funksiya tuzing." << endl;
-	cout << "7) Hech bir uchtasi bir to’g’ri chiziqda yotmaydigan funksiya tuzing." << endl;
-	cout << "8) Berilgan son 11 ga bo‘linsa 1 aks holda 0 chiqaruvchi funksiya tuzing." << endl;
-	cout << "9) Berilgan sonni K o‘rindagi raqamini N o‘rindagi raqami bilan almashtiruvchi funksiya tuzing." << endl;
-	cout << "10) Sonni raqamlarini o‘sish (kamayish) tartibida saralovchi funksiya tuzing." << endl;
-	cout << "11) Uchburchakni uchta uchining koordinatalari berilgan. Uning yuzasini topuvchi funksiya tuzing." << endl;
-	cout << "12) Tomonlari a, b, c, d va e haqiqiy sonlardan iborat bo‘lgan beshburchak berilgan. Beshburchakni va undagi uchta uchburchaklarni yuzasini topuvchi alohida funksiyalar tuzing." << endl;
+	cout << endl;
+	cout << getNumberAndText("01", "Q sonini P darajasini topuvchi funksiya tuzing.") << endl;
+	cout << getNumberAndText("02", "P sonini oxiridan L sonini qo'shuvchi funksiya tuzing.") << endl;
+	cout << getNumberAndText("03", "Berilgan to'g'ri burchakli uchburchakning katetlari \n\t\t\t      yordamida gipotenuzasini topuvchi funksiya tuzing") << endl;
+	cout << getNumberAndText("04", "Berilgan ikki nuqtaning koordinatasi asosida ular \n\t\t\t      orasidagi masofani topuvchi funksiya tuzing") << endl;
+	cout << getNumberAndText("05", "Berilgan sondagi qo‘shni raqamlarining raqamlarining yig'indisiga \n\t\t\t      teng bo'lgan raqamni o'chirivchi funksiya tuzing.(Uch xonali son misolida: 143 Natija 13)") << endl;
+	cout << getNumberAndText("06", "Berilgan N soni ikkita tub sonni yig'indisi bo‘lishini \n\t\t\t      tekshiruvchi funksiya tuzing.") << endl;
+	cout << getNumberAndText("07", "Hech bir uchtasi bir to'g'ri chiziqda yotmaydigan funksiya tuzing.") << endl;
+	cout << getNumberAndText("08", "Berilgan son 11 ga bo'linsa 1 aks holda 0 chiqaruvchi funksiya tuzing.") << endl;
+	cout << getNumberAndText("09", "Berilgan sonni K o'rindagi raqamini N o'rindagi raqami \n\t\t\t      bilan almashtiruvchi funksiya tuzing.") << endl;
+	cout << getNumberAndText("10", "Sonni raqamlarini o'sish (kamayish) tartibida saralovchi funksiya tuzing.") << endl;
+	cout << getNumberAndText("11", "Uchburchakni uchta uchining koordinatalari berilgan. Uning \n\t\t\t      yuzasini topuvchi funksiya tuzing.") << endl;
+	cout << getNumberAndText("12", "Tomonlari a, b, c, d va e haqiqiy sonlardan iborat bo'lgan \n\t\t\t      beshburchak berilgan. Beshburchakni va \n\t\t\t      undagi uchta uchburchaklarni yuzasini topuvchi alohida funksiyalar tuzing.") << endl;
 
 	do
 	{
+		getCommandLine();
 
 		cout << "Endi misol raqamini kiriting: ";
 		cin >> MISOL_RAQAMI;
@@ -504,49 +575,13 @@ void BirinchiTopshiriqniYuklash()
 			break;
 
 		default:
-			cout << "Misolni topilmadi!";
+			cout << ORANGE << "Misolni topilmadi!" << RESET << endl;
 		}
 
-		cout << "Yana misol ishlanadimi? (h/y): " << endl;
+		cout << BLUE << "Yana misol ishlanadimi? (h/y): " << RESET << endl;
 		cin >> SAV;
 
 	} while (SAV == "h");
-}
-
-
-
-
-string getNumberAndText(int son, const string& text) {
-	stringstream ss;
-	ss << BLUE << "\t\t\t[" << WHITE << son << RESET << BLUE << "]" << "  " << OKEGREEN << text << RESET << "\n";
-
-	return ss.str();
-	
-}
-
-
-void getConsoleMenu() {
-
-
-	cout << YELLOW << "\t\t#--------------------------		Amaliy Mashiqlar!		--------------------------#" << RESET << "\n\n\n";
-	cout << getNumberAndText(1,  "Kiritish va chiqarish funksiyalari. Algoritm va uning turlari.") << endl;
-	cout << getNumberAndText(2,  "Chiziqli tuzilmalarning algoritmlari va ularning dasturi.") << endl;
-	cout << getNumberAndText(3,  "Tarmoqlanuvchi algoritmlar va ularning dasturi.") << endl;
-	cout << getNumberAndText(4,  "Takrorlanuvchi tuzilmali algoritmlar va ularning dasturi") << endl;
-	cout << getNumberAndText(5,  "Funksiyalarni tashkil etish") << endl;
-	cout << getNumberAndText(6,  "Massivlarni tashkil etish") << endl;
-	cout << getNumberAndText(7,  "Ikki o‘lchamli massivlarni tashkil etish") << endl;
-	cout << getNumberAndText(8,  "Satrlar va satrlar ustida amallar. String standart funksiyalari") << endl;
-	cout << getNumberAndText(9,  "Fayllar bilan ishlash asoslari") << endl;
-	cout << getNumberAndText(10, "Sinf va ob’ektlar. Ob’ektga mo‘ljallangan dasturlash") << endl;
-	cout << getNumberAndText(11, "Konstruktorlar va destruktorlar") << endl;
-	cout << getNumberAndText(12, "Inkapsulyatsiya") << endl;
-	cout << getNumberAndText(13, "Merosxo’rlikdan foydalanib dasturlash.") << endl;
-	cout << getNumberAndText(14, "Polimorfizmdan foydalanib dasturlash") << endl;
-	cout << getNumberAndText(15, "Operatorlarni va funksiyalarni qayta yuklash") << endl;
-	cout << endl;
-
-
 }
 
 
@@ -562,42 +597,75 @@ void getSatipoffMenu() {
 	cout << RED << "\t\t\t" << "\\_______)|/     \\|   )_(   \\_______/|/       (_______)|/       |/" << RESET << endl;
 
 	cout << "\n\n";
-	
-	cout    << BOLD_ORANGE << "\t\t\t" << "OOOOOOOOd       OOOO     OOOOd    OOOO    dOOOOOO    OOOO    dOOOO" << endl
-			<< BOLD_ORANGE << "\t\t\t" << "OOOOOOOOOOO    OOOOOO    OOOOOO   OOOO  OOOOOOOOOOO  OOOO    OOOOd" << endl
-			<< BOLD_ORANGE << "\t\t\t" << "OOOO   OOOO   dOOOOOOd   OOOOOOO  OOOO OOOOd   OOOOO OOOO    OOOOO" << endl
-			<< BOLD_ORANGE << "\t\t\t" << "OOOOOOOOOOO  dOOOOOOOOd  OOOOdOOOOOOOO OOOO          OOOOOOOOOOOOO" << endl
-			<< BOLD_ORANGE << "\t\t\t" << "OOOOOOOOO    OOOd  OOOO  OOOO dOOOOOOO OOOO          OOOOOOOOOOOOd" << endl
-			<< BOLD_ORANGE << "\t\t\t" << "OOOO OOOOO  OOOOOOOOOOOO OOOO   OOOOOO dOOOOOdOOOOOO OOOO    OOOOO" << endl
-			<< BOLD_ORANGE << "\t\t\t" << "OOOO  OOOOddOOOO    OOOOOOOOO    OOOOO   OOOOOOOOOO  OOOO    OOOOd" << endl;
+
+	cout << BOLD_ORANGE << "\t\t\t" << "OOOOOOOOd       OOOO     OOOOd    OOOO    dOOOOOO    OOOO    dOOOO" << RESET << endl
+		<< BOLD_ORANGE << "\t\t\t" << "OOOOOOOOOOO    OOOOOO    OOOOOO   OOOO  OOOOOOOOOOO  OOOO    OOOOd" << RESET << endl
+		<< BOLD_ORANGE << "\t\t\t" << "OOOO   OOOO   dOOOOOOd   OOOOOOO  OOOO OOOOd   OOOOO OOOO    OOOOO" << RESET << endl
+		<< BOLD_ORANGE << "\t\t\t" << "OOOOOOOOOOO  dOOOOOOOOd  OOOOdOOOOOOOO OOOO          OOOOOOOOOOOOO" << RESET << endl
+		<< BOLD_ORANGE << "\t\t\t" << "OOOOOOOOO    OOOd  OOOO  OOOO dOOOOOOO OOOO          OOOOOOOOOOOOd" << RESET << endl
+		<< BOLD_ORANGE << "\t\t\t" << "OOOO OOOOO  OOOOOOOOOOOO OOOO   OOOOOO dOOOOOdOOOOOO OOOO    OOOOO" << RESET << endl
+		<< BOLD_ORANGE << "\t\t\t" << "OOOO  OOOOddOOOO    OOOOOOOOO    OOOOO   OOOOOOOOOO  OOOO    OOOOd" << RESET << endl;
 
 
 }
+
+
+
+void getConsoleMenu() {
+
+	getSatipoffMenu(); // Satipoff Texti
+
+	cout << "\n\n\n";
+
+
+	cout << YELLOW << "         #--------------------------		Amaliy Mashiqlar!		--------------------------#" << RESET << "\n\n\n";
+	// 5 chi misoldan bo'shliman vaqtinchalik 
+/*	cout << getNumberAndText("01", "Kiritish va chiqarish funksiyalari. Algoritm va uning turlari.") << endl;
+	cout << getNumberAndText("02", "Chiziqli tuzilmalarning algoritmlari va ularning dasturi.") << endl;
+	cout << getNumberAndText("03", "Tarmoqlanuvchi algoritmlar va ularning dasturi.") << endl;
+	cout << getNumberAndText("04", "Takrorlanuvchi tuzilmali algoritmlar va ularning dasturi") << endl; */
+	cout << getNumberAndText("05", "Funksiyalarni tashkil etish") << endl;
+	cout << getNumberAndText("06", "Massivlarni tashkil etish") << endl;
+	cout << getNumberAndText("07", "Ikki o‘lchamli massivlarni tashkil etish") << endl;
+	cout << getNumberAndText("08", "Satrlar va satrlar ustida amallar. String standart funksiyalari") << endl;
+	cout << getNumberAndText("09", "Fayllar bilan ishlash asoslari") << endl;
+	cout << getNumberAndText("10", "Sinf va ob’ektlar. Ob’ektga mo‘ljallangan dasturlash") << endl;
+	cout << getNumberAndText("11", "Konstruktorlar va destruktorlar") << endl;
+	cout << getNumberAndText("12", "Inkapsulyatsiya") << endl;
+	cout << getNumberAndText("13", "Merosxo’rlikdan foydalanib dasturlash.") << endl;
+	cout << getNumberAndText("14", "Polimorfizmdan foydalanib dasturlash") << endl;
+	cout << getNumberAndText("15", "Operatorlarni va funksiyalarni qayta yuklash") << endl;
+	cout << endl;
+
+}
+
+
+
+void clear() {
+	cout << "\x1B[2J\x1B[H";
+}
+
+
 
 
 int main()
 {
 
 
-	int TOPSHIRIQ_RAQAMI;
-	int MAVZU_RAQAMI;
 
 	do
 	{
 
-		getSatipoffMenu(); // Satipoff Texti
+		getConsoleMenu(); // chunrli dagan umiddaman!
 
-		cout << "\n\n\n"; 
-		getConsoleMenu();
-		cout << "Topshiriq raqamini kiriting!: ";
-
-
-		cin >> TOPSHIRIQ_RAQAMI;
+		getCommandLine(); // amaliyot qabul qiluvchi
+		cin >> TOPSHIRIQ_RAQAMI; // "getCommandLine()"da giritgan sonni Topshiriqa yukliydi.
 
 		switch (TOPSHIRIQ_RAQAMI)
 		{
-		case 1:
-			BirinchiTopshiriqniYuklash();
+		case 5:
+			clear();
+			BeshinchiMavzuniYuklash();
 			break;
 
 		default:
