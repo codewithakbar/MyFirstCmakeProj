@@ -1,6 +1,6 @@
 ﻿// Copyright (c) 2023 Akbar Satipov (codewithakbar)
 
-// Diqqat! Gavno kod bo'lib go'rinishi mumkin lekin 
+// Diqqat! Gavno kod bo'lib go'rinishi mumkin lekin
 // man hozircha majburman shunatib kod yozib durisha.
 // Mualliflik huquqiga qattiq rioya qilinadi
 // Agar kimda-kim muallifdan so'ramasdan kodni ishlatsa:
@@ -10,46 +10,45 @@
 
 using namespace std;
 
-
-#define RESET		"\033[0m"
-#define RED			"\033[31m"
-#define GREEN		"\033[32m"
-#define YELLOW		"\033[33m"
-#define WHITE		"\033[37m"
-#define BLUE		"\033[34m"
-#define cyan		"\e[0;36m"
-#define green		"\e[0;34m"
-#define OKEGREEN    "\033[38;2;0;128;0m"
+#define RESET "\033[0m"
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define YELLOW "\033[33m"
+#define WHITE "\033[37m"
+#define BLUE "\033[34m"
+#define cyan "\e[0;36m"
+#define green "\e[0;34m"
+#define OKEGREEN "\033[38;2;0;128;0m"
 #define LIGHT_GREEN "\033[92m"
-#define BOLD_BLUE   "\033[1;34m"
-#define ORANGE      "\033[38;2;255;165;0m"
+#define BOLD_BLUE "\033[1;34m"
+#define ORANGE "\033[38;2;255;165;0m"
 #define BOLD_ORANGE "\033[1;38;2;255;165;0m"
 
-
 string Sorov; // siklni to'xtatish uchun o'zgarivchan
-string SAV; // siklni to'xtatish uchun o'zgarivchan
+string SAV;	  // siklni to'xtatish uchun o'zgarivchan
 
 // raqam bilan textni xoshroy chiqaradon funksiya
-string getNumberAndText(string son, const string& text) {
+string getNumberAndText(string son, const string &text)
+{
 	stringstream ss;
-	ss << BLUE << "\t\t\t[" << WHITE << son << RESET << BLUE << "]" << "  " << OKEGREEN << text << RESET << "\n";
+	ss << BLUE << "\t\t\t[" << WHITE << son << RESET << BLUE << "]"
+		<< "  " << OKEGREEN << text << RESET << "\n";
 
 	return ss.str();
-
 }
-
 
 int TOPSHIRIQ_RAQAMI;
 int MAVZU_RAQAMI;
 
-
 // komputer nomini chiqaradi (admin@kompnomi:#>)
-int getCommandLine() {
+int getCommandLine()
+{
 
 	char computerName[MAX_COMPUTERNAME_LENGTH + 1];
 	DWORD size = sizeof(computerName);
 
-	if (!GetComputerName(computerName, &size)) {
+	if (!GetComputerName(computerName, &size))
+	{
 		DWORD error = GetLastError();
 		cerr << "Kompyuter nomi xato: " + error << endl;
 		return 1;
@@ -58,9 +57,9 @@ int getCommandLine() {
 	cout << RED << "\nadmin@" << computerName << RESET << ":#> ";
 }
 
-
 // MAVZU 5
-namespace BeshinchiMavzu {
+namespace BeshinchiMavzu
+{
 
 	// Beshinchi Mavzu Birinchi Topshiriq Misollari Jamlanmasi!
 	class BirinchiTopshiriq
@@ -505,8 +504,6 @@ namespace BeshinchiMavzu {
 
 }
 
-
-
 void BeshinchiMavzuniYuklash()
 {
 
@@ -584,46 +581,56 @@ void BeshinchiMavzuniYuklash()
 	} while (SAV == "h");
 }
 
-
-void getSatipoffMenu() {
-
-	cout << "\n\n";
-	cout << RED << "\t\t\t" << "(  ____ \\(  ___  )\\__   __/\\__   __/(  ____ )(  ___  )(  ____ \\(  ____ \\" << RESET << endl;
-	cout << RED << "\t\t\t" << "| (    \\/| (   ) |   ) (      ) (   | (    )|| (   ) || (    \\/| (    \\/" << RESET << endl;
-	cout << RED << "\t\t\t" << "| (_____ | (___) |   | |      | |   | (____)|| |   | || (__)   | (__" << RESET << endl;
-	cout << RED << "\t\t\t" << "(_____  )|  ___  |   | |      | |   |  _____)| |   | ||  __)   |  __)" << RESET << endl;
-	cout << RED << "\t\t\t" << "      ) || (   ) |   | |      | |   | (      | |   | || (      | (" << RESET << endl;
-	cout << RED << "\t\t\t" << "/\\____) || )   ( |   | |   ___) (___| )      | (___) || )      | )" << RESET << endl;
-	cout << RED << "\t\t\t" << "\\_______)|/     \\|   )_(   \\_______/|/       (_______)|/       |/" << RESET << endl;
+void getSatipoffMenu()
+{
 
 	cout << "\n\n";
+	cout << RED << "\t\t\t"
+		  << "(  ____ \\(  ___  )\\__   __/\\__   __/(  ____ )(  ___  )(  ____ \\(  ____ \\" << RESET << endl;
+	cout << RED << "\t\t\t"
+		  << "| (    \\/| (   ) |   ) (      ) (   | (    )|| (   ) || (    \\/| (    \\/" << RESET << endl;
+	cout << RED << "\t\t\t"
+		  << "| (_____ | (___) |   | |      | |   | (____)|| |   | || (__)   | (__" << RESET << endl;
+	cout << RED << "\t\t\t"
+		  << "(_____  )|  ___  |   | |      | |   |  _____)| |   | ||  __)   |  __)" << RESET << endl;
+	cout << RED << "\t\t\t"
+		  << "      ) || (   ) |   | |      | |   | (      | |   | || (      | (" << RESET << endl;
+	cout << RED << "\t\t\t"
+		  << "/\\____) || )   ( |   | |   ___) (___| )      | (___) || )      | )" << RESET << endl;
+	cout << RED << "\t\t\t"
+		  << "\\_______)|/     \\|   )_(   \\_______/|/       (_______)|/       |/" << RESET << endl;
 
-	cout << BOLD_ORANGE << "\t\t\t" << "OOOOOOOOd       OOOO     OOOOd    OOOO    dOOOOOO    OOOO    dOOOO" << RESET << endl
-		<< BOLD_ORANGE << "\t\t\t" << "OOOOOOOOOOO    OOOOOO    OOOOOO   OOOO  OOOOOOOOOOO  OOOO    OOOOd" << RESET << endl
-		<< BOLD_ORANGE << "\t\t\t" << "OOOO   OOOO   dOOOOOOd   OOOOOOO  OOOO OOOOd   OOOOO OOOO    OOOOO" << RESET << endl
-		<< BOLD_ORANGE << "\t\t\t" << "OOOOOOOOOOO  dOOOOOOOOd  OOOOdOOOOOOOO OOOO          OOOOOOOOOOOOO" << RESET << endl
-		<< BOLD_ORANGE << "\t\t\t" << "OOOOOOOOO    OOOd  OOOO  OOOO dOOOOOOO OOOO          OOOOOOOOOOOOd" << RESET << endl
-		<< BOLD_ORANGE << "\t\t\t" << "OOOO OOOOO  OOOOOOOOOOOO OOOO   OOOOOO dOOOOOdOOOOOO OOOO    OOOOO" << RESET << endl
-		<< BOLD_ORANGE << "\t\t\t" << "OOOO  OOOOddOOOO    OOOOOOOOO    OOOOO   OOOOOOOOOO  OOOO    OOOOd" << RESET << endl;
+	cout << "\n\n";
 
-
+	cout << BOLD_ORANGE << "\t\t\t"
+		  << "OOOOOOOOd       OOOO     OOOOd    OOOO    dOOOOOO    OOOO    dOOOO" << RESET << endl
+		  << BOLD_ORANGE << "\t\t\t"
+		  << "OOOOOOOOOOO    OOOOOO    OOOOOO   OOOO  OOOOOOOOOOO  OOOO    OOOOd" << RESET << endl
+		  << BOLD_ORANGE << "\t\t\t"
+		  << "OOOO   OOOO   dOOOOOOd   OOOOOOO  OOOO OOOOd   OOOOO OOOO    OOOOO" << RESET << endl
+		  << BOLD_ORANGE << "\t\t\t"
+		  << "OOOOOOOOOOO  dOOOOOOOOd  OOOOdOOOOOOOO OOOO          OOOOOOOOOOOOO" << RESET << endl
+		  << BOLD_ORANGE << "\t\t\t"
+		  << "OOOOOOOOO    OOOd  OOOO  OOOO dOOOOOOO OOOO          OOOOOOOOOOOOd" << RESET << endl
+		  << BOLD_ORANGE << "\t\t\t"
+		  << "OOOO OOOOO  OOOOOOOOOOOO OOOO   OOOOOO dOOOOOdOOOOOO OOOO    OOOOO" << RESET << endl
+		  << BOLD_ORANGE << "\t\t\t"
+		  << "OOOO  OOOOddOOOO    OOOOOOOOO    OOOOO   OOOOOOOOOO  OOOO    OOOOd" << RESET << endl;
 }
 
-
-
-void getConsoleMenu() {
+void getConsoleMenu()
+{
 
 	getSatipoffMenu(); // Satipoff Texti
 
 	cout << "\n\n\n";
 
-
 	cout << YELLOW << "         #--------------------------		Amaliy Mashiqlar!		--------------------------#" << RESET << "\n\n\n";
-	// 5 chi misoldan bo'shliman vaqtinchalik 
-/*	cout << getNumberAndText("01", "Kiritish va chiqarish funksiyalari. Algoritm va uning turlari.") << endl;
-	cout << getNumberAndText("02", "Chiziqli tuzilmalarning algoritmlari va ularning dasturi.") << endl;
-	cout << getNumberAndText("03", "Tarmoqlanuvchi algoritmlar va ularning dasturi.") << endl;
-	cout << getNumberAndText("04", "Takrorlanuvchi tuzilmali algoritmlar va ularning dasturi") << endl; */
+	// 5 chi misoldan bo'shliman vaqtinchalik
+	/*	cout << getNumberAndText("01", "Kiritish va chiqarish funksiyalari. Algoritm va uning turlari.") << endl;
+		cout << getNumberAndText("02", "Chiziqli tuzilmalarning algoritmlari va ularning dasturi.") << endl;
+		cout << getNumberAndText("03", "Tarmoqlanuvchi algoritmlar va ularning dasturi.") << endl;
+		cout << getNumberAndText("04", "Takrorlanuvchi tuzilmali algoritmlar va ularning dasturi") << endl; */
 	cout << getNumberAndText("05", "Funksiyalarni tashkil etish") << endl;
 	cout << getNumberAndText("06", "Massivlarni tashkil etish") << endl;
 	cout << getNumberAndText("07", "Ikki o‘lchamli massivlarni tashkil etish") << endl;
@@ -636,29 +643,22 @@ void getConsoleMenu() {
 	cout << getNumberAndText("14", "Polimorfizmdan foydalanib dasturlash") << endl;
 	cout << getNumberAndText("15", "Operatorlarni va funksiyalarni qayta yuklash") << endl;
 	cout << endl;
-
 }
 
-
-
-void clear() {
+void clear()
+{
 	cout << "\x1B[2J\x1B[H";
 }
 
-
-
-
 int main()
 {
-
-
 
 	do
 	{
 
 		getConsoleMenu(); // chunrli dagan umiddaman!
 
-		getCommandLine(); // amaliyot qabul qiluvchi
+		getCommandLine();			 // amaliyot qabul qiluvchi
 		cin >> TOPSHIRIQ_RAQAMI; // "getCommandLine()"da giritgan sonni Topshiriqa yukliydi.
 
 		switch (TOPSHIRIQ_RAQAMI)
