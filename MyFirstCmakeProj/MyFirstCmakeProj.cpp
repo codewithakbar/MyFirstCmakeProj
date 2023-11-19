@@ -28,7 +28,7 @@ string Sorov; // siklni to'xtatish uchun o'zgarivchan
 string SAV;	  // siklni to'xtatish uchun o'zgarivchan
 
 // raqam bilan textni xoshroy chiqaradon funksiya
-string getNumberAndText(string son, const string &text)
+string getNumberAndText(string son, const string& text)
 {
 	stringstream ss;
 	ss << BLUE << "\t\t\t[" << WHITE << son << RESET << BLUE << "]"
@@ -57,14 +57,96 @@ int getCommandLine()
 	cout << RED << "\nadmin@" << computerName << RESET << ":#> ";
 }
 
+
 // MAVZU 5
 namespace BeshinchiMavzu
 {
 
-	// Beshinchi Mavzu Birinchi Topshiriq Misollari Jamlanmasi!
+	// Beshinchi Mavzu topshiriq, misollar jamlanmasi!
 	class BirinchiTopshiriq
 	{
+
 	public:
+
+		void setBeshinchiMavzuBirinchiTopshirq()
+		{
+
+			int MISOL_RAQAMI;
+
+
+			cout << endl;
+			cout << getNumberAndText("01", "Q sonini P darajasini topuvchi funksiya tuzing.") << endl;
+			cout << getNumberAndText("02", "P sonini oxiridan L sonini qo'shuvchi funksiya tuzing.") << endl;
+			cout << getNumberAndText("03", "Berilgan to'g'ri burchakli uchburchakning katetlari \n\t\t\t      yordamida gipotenuzasini topuvchi funksiya tuzing") << endl;
+			cout << getNumberAndText("04", "Berilgan ikki nuqtaning koordinatasi asosida ular \n\t\t\t      orasidagi masofani topuvchi funksiya tuzing") << endl;
+			cout << getNumberAndText("05", "Berilgan sondagi qo‘shni raqamlarining raqamlarining yig'indisiga \n\t\t\t      teng bo'lgan raqamni o'chirivchi funksiya tuzing.(Uch xonali son misolida: 143 Natija 13)") << endl;
+			cout << getNumberAndText("06", "Berilgan N soni ikkita tub sonni yig'indisi bo‘lishini \n\t\t\t      tekshiruvchi funksiya tuzing.") << endl;
+			cout << getNumberAndText("07", "Hech bir uchtasi bir to'g'ri chiziqda yotmaydigan funksiya tuzing.") << endl;
+			cout << getNumberAndText("08", "Berilgan son 11 ga bo'linsa 1 aks holda 0 chiqaruvchi funksiya tuzing.") << endl;
+			cout << getNumberAndText("09", "Berilgan sonni K o'rindagi raqamini N o'rindagi raqami \n\t\t\t      bilan almashtiruvchi funksiya tuzing.") << endl;
+			cout << getNumberAndText("10", "Sonni raqamlarini o'sish (kamayish) tartibida saralovchi funksiya tuzing.") << endl;
+			cout << getNumberAndText("11", "Uchburchakni uchta uchining koordinatalari berilgan. Uning \n\t\t\t      yuzasini topuvchi funksiya tuzing.") << endl;
+			cout << getNumberAndText("12", "Tomonlari a, b, c, d va e haqiqiy sonlardan iborat bo'lgan \n\t\t\t      beshburchak berilgan. Beshburchakni va \n\t\t\t      undagi uchta uchburchaklarni yuzasini topuvchi alohida funksiyalar tuzing.") << endl;
+
+			do
+			{
+				getCommandLine();
+
+				cout << "Endi misol raqamini kiriting: ";
+				cin >> MISOL_RAQAMI;
+
+				switch (MISOL_RAQAMI)
+				{
+				case 1:
+					Misol1();
+					break;
+				case 2:
+					Misol2();
+					break;
+				case 3:
+					Misol3();
+					break;
+				case 4:
+					Misol4();
+					break;
+				case 5:
+					Misol5();
+					break;
+				case 6:
+					Misol6();
+					break;
+				case 7:
+					Misol7();
+					break;
+				case 8:
+					Misol8();
+					break;
+				case 9:
+					Misol9();
+					break;
+				case 10:
+					Misol10();
+					break;
+				case 11:
+					Misol_11();
+					break;
+				case 12:
+					Misol_12();
+					break;
+
+				default:
+					cout << ORANGE << "Misolni topilmadi!" << RESET << endl;
+				}
+
+				getCommandLine();
+				cout << BLUE << "Yana misol ishlanadimi? (h/y): " << RESET << endl;
+				cin >> SAV;
+
+			} while (SAV == "h");
+		}
+
+
+	private:
 		struct Nuqta
 		{
 			double x;
@@ -280,7 +362,7 @@ namespace BeshinchiMavzu
 
 			double natija = darajaTop(son, daraja);
 
-			cout << son << "ning " << daraja << " darajasi = " << natija << endl;
+			cout << GREEN << son << "ning " << daraja << " darajasi = " << natija << RESET << endl;
 		}
 
 		void Misol2()
@@ -297,7 +379,7 @@ namespace BeshinchiMavzu
 
 			double natija = qoshuvchi(P, L);
 
-			cout << "Natija: " << natija << endl;
+			cout << GREEN << "Natija: " << natija << RESET << endl;
 		}
 
 		void Misol3()
@@ -314,7 +396,7 @@ namespace BeshinchiMavzu
 
 			double gipotenuza = gipotenuzaTop(katet1, katet2);
 
-			cout << "Gipotenuza: " << gipotenuza << endl;
+			cout << GREEN << "Gipotenuza: " << gipotenuza << RESET << endl;
 		}
 
 		void Misol4()
@@ -330,7 +412,8 @@ namespace BeshinchiMavzu
 
 			double masofa = masofaTop(x1, y1, x2, y2);
 
-			cout << "Nuqtalar orasidagi masofa: " << masofa << endl;
+			getCommandLine();
+			cout << GREEN << "Nuqtalar orasidagi masofa: " << masofa << RESET << endl;
 		}
 
 		void Misol5()
@@ -344,7 +427,7 @@ namespace BeshinchiMavzu
 			int ochiriladiganRaqam = ortaDelete(son);
 
 			getCommandLine();
-			cout << "Natija: " << ochiriladiganRaqam << endl;
+			cout << GREEN << "Natija: " << ochiriladiganRaqam << RESET << endl;
 		}
 
 		void Misol6()
@@ -362,12 +445,12 @@ namespace BeshinchiMavzu
 			if (natija)
 			{
 				getCommandLine();
-				cout << N << " soni ikkita tub sonning yig'indisi" << endl;
+				cout << GREEN << N << " soni ikkita tub sonning yig'indisi" << RESET << endl;
 			}
 			else
 			{
 				getCommandLine();
-				cout << N << " soni ikkita tub sonning yig'indisi emas" << endl;
+				cout << GREEN << N << " soni ikkita tub sonning yig'indisi emas" << RESET << endl;
 			}
 		}
 
@@ -391,11 +474,12 @@ namespace BeshinchiMavzu
 			if (natija)
 			{
 				getCommandLine();
-				cout << "Uchta nuqta bir to'g'ri chiziqda yotmaydi." << endl;
+				cout << GREEN << "Uchta nuqta bir to'g'ri chiziqda yotmaydi." << RESET << endl;
 			}
 			else
 			{
-				cout << "Uchta nuqta bir to'g'ri chiziqda yotadi yoki chiziq to'g'ri emas." << endl;
+				getCommandLine();
+				cout << GREEN << "Uchta nuqta bir to'g'ri chiziqda yotadi yoki chiziq to'g'ri emas." << RESET << endl;
 			}
 		}
 
@@ -410,7 +494,7 @@ namespace BeshinchiMavzu
 			int natija = bolinuvchiSon(son);
 
 			getCommandLine();
-			cout << "Natija: " << natija << endl;
+			cout << GREEN << "Natija: " << natija << RESET << endl;
 		}
 
 		void Misol9()
@@ -432,7 +516,7 @@ namespace BeshinchiMavzu
 
 			int natija = replaceDigit(son, k, n);
 			getCommandLine();
-			cout << "Natija: " << natija << endl;
+			cout << GREEN << "Natija: " << natija << RESET << endl;
 		}
 
 		void Misol10()
@@ -446,7 +530,7 @@ namespace BeshinchiMavzu
 
 			int tartiblanganSon = reverseSort(son);
 			getCommandLine();
-			cout << "Raqamlari kamayish tartibida saralgan son: " << tartiblanganSon << endl;
+			cout << GREEN << "Raqamlari kamayish tartibida saralgan son: " << tartiblanganSon << RESET << endl;
 		}
 
 		void Misol_11()
@@ -468,7 +552,7 @@ namespace BeshinchiMavzu
 
 			double yuza = triangleArea(a, b, c);
 			getCommandLine();
-			cout << "Uchburchakning yuzasi: " << yuza << endl;
+			cout << GREEN << "Uchburchakning yuzasi: " << yuza << RESET << endl;
 		}
 
 		void Misol_12()
@@ -498,124 +582,333 @@ namespace BeshinchiMavzu
 
 			double beshburchakYuza = pentagonArea(a, b, c, d, e);
 			getCommandLine();
-			cout << "Beshburchakning yuzasi: " << beshburchakYuza << endl;
+			cout << GREEN << "Beshburchakning yuzasi: " << beshburchakYuza << RESET << endl;
 		}
+	};
+
+	class IkkinchiTopshiriq
+	{
+	public:
+
+		void setBeshinchiMavzu_IkkinchiTopshirq()
+		{
+
+			int MISOL_RAQAMI;
+
+
+			cout << "\n\n";
+			cout << "#----------------------- Ikkinchi Topshiriq ------------------------#";
+			cout << "\n\n";
+			cout << getNumberAndText("01", "Ikkita son berilgan. Ularni raqamlari yig'indisi kattasini \n\t\t\t   toping. Sonni raqamlari yig'indisini topuvchi funksiya tuzing") << endl;
+			cout << getNumberAndText("02", "soninig") << endl;
+			cout << getNumberAndText("03", "itenuzasini") << endl;
+			cout << getNumberAndText("04", "anituzing") << endl;
+			cout << getNumberAndText("05", "Natija") << endl;
+			cout << getNumberAndText("06", "tuzing") << endl;
+			cout << getNumberAndText("07", "tuzing") << endl;
+			cout << getNumberAndText("08", "Berilgan") << endl;
+			cout << getNumberAndText("09", "Berilgan") << endl;
+			cout << getNumberAndText("10", "Sonni") << endl;
+			cout << getNumberAndText("11", "Uchburchakni") << endl;
+			cout << getNumberAndText("12", "Tomonlari") << endl;
+			cout << "\n";
+
+			do
+			{
+				getCommandLine();
+
+				cout << "Endi misol raqamini kiriting: ";
+				cin >> MISOL_RAQAMI;
+
+				switch (MISOL_RAQAMI)
+				{
+				case 1:
+					Misol1();
+					break;
+				case 2:
+					Misol2();
+					break;
+				case 3:
+					Misol3();
+					break;
+				case 4:
+					Misol4();
+					break;
+				case 5:
+					Misol5();
+					break;
+				case 6:
+					Misol6();
+					break;
+				case 7:
+					Misol7();
+					break;
+				case 8:
+					Misol8();
+					break;
+				case 9:
+					Misol9();
+					break;
+				case 10:
+					Misol10();
+					break;
+				case 11:
+					Misol_11();
+					break;
+				case 12:
+					Misol_12();
+					break;
+
+				default:
+					cout << ORANGE << "Misolni topilmadi!" << RESET << endl;
+				}
+
+				getCommandLine();
+				cout << BLUE << "Yana misol ishlanadimi? (h/y): " << RESET << endl;
+				cin >> SAV;
+
+			} while (SAV == "h");
+		}
+
+
+	private:
+
+
+		void Misol1()
+		{
+
+		}
+
+		void Misol2()
+		{
+
+		}
+
+		void Misol3()
+		{
+
+		}
+
+		void Misol4()
+		{
+
+		}
+		void Misol5()
+		{
+
+		}
+		void Misol6()
+		{
+
+		}
+		void Misol7()
+		{
+
+		}
+		void Misol8()
+		{
+
+		}
+		void Misol9()
+		{
+
+		}
+		void Misol10()
+		{
+
+		}
+		void Misol_11()
+		{
+
+		}
+		void Misol_12()
+		{
+
+		}
+
+
+
+	};
+
+	class UchunchiTopshiriq
+	{
+	public:
+
+		void setBeshinchiMavzu_UchunchiTopshirq()
+		{
+
+			int MISOL_RAQAMI;
+
+
+			cout << endl;
+			cout << getNumberAndText("01", "funksiya") << endl;
+			cout << getNumberAndText("02", "soninig") << endl;
+			cout << getNumberAndText("03", "itenuzasini") << endl;
+			cout << getNumberAndText("04", "anituzing") << endl;
+			cout << getNumberAndText("05", "Natija") << endl;
+			cout << getNumberAndText("06", "tuzing") << endl;
+			cout << getNumberAndText("07", "tuzing") << endl;
+			cout << getNumberAndText("08", "Berilgan") << endl;
+			cout << getNumberAndText("09", "Berilgan") << endl;
+			cout << getNumberAndText("10", "Sonni") << endl;
+			cout << getNumberAndText("11", "Uchburchakni") << endl;
+			cout << getNumberAndText("12", "Tomonlari") << endl;
+
+			do
+			{
+				getCommandLine();
+
+				cout << "Endi misol raqamini kiriting: ";
+				cin >> MISOL_RAQAMI;
+
+				switch (MISOL_RAQAMI)
+				{
+				case 1:
+					Misol1();
+					break;
+				case 2:
+					Misol2();
+					break;
+				case 3:
+					Misol3();
+					break;
+				case 4:
+					Misol4();
+					break;
+				case 5:
+					Misol5();
+					break;
+				case 6:
+					Misol6();
+					break;
+				case 7:
+					Misol7();
+					break;
+				case 8:
+					Misol8();
+					break;
+				case 9:
+					Misol9();
+					break;
+				case 10:
+					Misol10();
+					break;
+				case 11:
+					Misol_11();
+					break;
+				case 12:
+					Misol_12();
+					break;
+
+				default:
+					cout << ORANGE << "Misolni topilmadi!" << RESET << endl;
+				}
+
+				getCommandLine();
+				cout << BLUE << "Yana misol ishlanadimi? (h/y): " << RESET << endl;
+				cin >> SAV;
+
+			} while (SAV == "h");
+		}
+
+
+	private:
+
+
+		void Misol1()
+		{
+
+		}
+
+		void Misol2()
+		{
+
+		}
+
+		void Misol3()
+		{
+
+		}
+
+		void Misol4()
+		{
+
+		}
+		void Misol5()
+		{
+
+		}
+		void Misol6()
+		{
+
+		}
+		void Misol7()
+		{
+
+		}
+		void Misol8()
+		{
+
+		}
+		void Misol9()
+		{
+
+		}
+		void Misol10()
+		{
+
+		}
+		void Misol_11()
+		{
+
+		}
+		void Misol_12()
+		{
+
+		}
+
+
+
 	};
 
 }
 
-void BeshinchiMavzuniYuklash()
-{
-
-	BeshinchiMavzu::BirinchiTopshiriq birinchi;
-
-	int MISOL_RAQAMI;
-
-	cout << endl;
-	cout << getNumberAndText("01", "Q sonini P darajasini topuvchi funksiya tuzing.") << endl;
-	cout << getNumberAndText("02", "P sonini oxiridan L sonini qo'shuvchi funksiya tuzing.") << endl;
-	cout << getNumberAndText("03", "Berilgan to'g'ri burchakli uchburchakning katetlari \n\t\t\t      yordamida gipotenuzasini topuvchi funksiya tuzing") << endl;
-	cout << getNumberAndText("04", "Berilgan ikki nuqtaning koordinatasi asosida ular \n\t\t\t      orasidagi masofani topuvchi funksiya tuzing") << endl;
-	cout << getNumberAndText("05", "Berilgan sondagi qo‘shni raqamlarining raqamlarining yig'indisiga \n\t\t\t      teng bo'lgan raqamni o'chirivchi funksiya tuzing.(Uch xonali son misolida: 143 Natija 13)") << endl;
-	cout << getNumberAndText("06", "Berilgan N soni ikkita tub sonni yig'indisi bo‘lishini \n\t\t\t      tekshiruvchi funksiya tuzing.") << endl;
-	cout << getNumberAndText("07", "Hech bir uchtasi bir to'g'ri chiziqda yotmaydigan funksiya tuzing.") << endl;
-	cout << getNumberAndText("08", "Berilgan son 11 ga bo'linsa 1 aks holda 0 chiqaruvchi funksiya tuzing.") << endl;
-	cout << getNumberAndText("09", "Berilgan sonni K o'rindagi raqamini N o'rindagi raqami \n\t\t\t      bilan almashtiruvchi funksiya tuzing.") << endl;
-	cout << getNumberAndText("10", "Sonni raqamlarini o'sish (kamayish) tartibida saralovchi funksiya tuzing.") << endl;
-	cout << getNumberAndText("11", "Uchburchakni uchta uchining koordinatalari berilgan. Uning \n\t\t\t      yuzasini topuvchi funksiya tuzing.") << endl;
-	cout << getNumberAndText("12", "Tomonlari a, b, c, d va e haqiqiy sonlardan iborat bo'lgan \n\t\t\t      beshburchak berilgan. Beshburchakni va \n\t\t\t      undagi uchta uchburchaklarni yuzasini topuvchi alohida funksiyalar tuzing.") << endl;
-
-	do
-	{
-		getCommandLine();
-
-		cout << "Endi misol raqamini kiriting: ";
-		cin >> MISOL_RAQAMI;
-
-		switch (MISOL_RAQAMI)
-		{
-		case 1:
-			birinchi.Misol1();
-			break;
-		case 2:
-			birinchi.Misol2();
-			break;
-		case 3:
-			birinchi.Misol3();
-			break;
-		case 4:
-			birinchi.Misol4();
-			break;
-		case 5:
-			birinchi.Misol5();
-			break;
-		case 6:
-			birinchi.Misol6();
-			break;
-		case 7:
-			birinchi.Misol7();
-			break;
-		case 8:
-			birinchi.Misol8();
-			break;
-		case 9:
-			birinchi.Misol9();
-			break;
-		case 10:
-			birinchi.Misol10();
-			break;
-		case 11:
-			birinchi.Misol_11();
-			break;
-		case 12:
-			birinchi.Misol_12();
-			break;
-
-		default:
-			cout << ORANGE << "Misolni topilmadi!" << RESET << endl;
-		}
-
-		cout << BLUE << "Yana misol ishlanadimi? (h/y): " << RESET << endl;
-		cin >> SAV;
-
-	} while (SAV == "h");
-}
 
 void getSatipoffMenu()
 {
 
 	cout << "\n\n";
 	cout << RED << "\t\t\t"
-		  << "(  ____ \\(  ___  )\\__   __/\\__   __/(  ____ )(  ___  )(  ____ \\(  ____ \\" << RESET << endl;
+		<< "(  ____ \\(  ___  )\\__   __/\\__   __/(  ____ )(  ___  )(  ____ \\(  ____ \\" << RESET << endl;
 	cout << RED << "\t\t\t"
-		  << "| (    \\/| (   ) |   ) (      ) (   | (    )|| (   ) || (    \\/| (    \\/" << RESET << endl;
+		<< "| (    \\/| (   ) |   ) (      ) (   | (    )|| (   ) || (    \\/| (    \\/" << RESET << endl;
 	cout << RED << "\t\t\t"
-		  << "| (_____ | (___) |   | |      | |   | (____)|| |   | || (__)   | (__" << RESET << endl;
+		<< "| (_____ | (___) |   | |      | |   | (____)|| |   | || (__)   | (__" << RESET << endl;
 	cout << RED << "\t\t\t"
-		  << "(_____  )|  ___  |   | |      | |   |  _____)| |   | ||  __)   |  __)" << RESET << endl;
+		<< "(_____  )|  ___  |   | |      | |   |  _____)| |   | ||  __)   |  __)" << RESET << endl;
 	cout << RED << "\t\t\t"
-		  << "      ) || (   ) |   | |      | |   | (      | |   | || (      | (" << RESET << endl;
+		<< "      ) || (   ) |   | |      | |   | (      | |   | || (      | (" << RESET << endl;
 	cout << RED << "\t\t\t"
-		  << "/\\____) || )   ( |   | |   ___) (___| )      | (___) || )      | )" << RESET << endl;
+		<< "/\\____) || )   ( |   | |   ___) (___| )      | (___) || )      | )" << RESET << endl;
 	cout << RED << "\t\t\t"
-		  << "\\_______)|/     \\|   )_(   \\_______/|/       (_______)|/       |/" << RESET << endl;
+		<< "\\_______)|/     \\|   )_(   \\_______/|/       (_______)|/       |/" << RESET << endl;
 
 	cout << "\n\n";
 
 	cout << BOLD_ORANGE << "\t\t\t"
-		  << "OOOOOOOOd       OOOO     OOOOd    OOOO    dOOOOOO    OOOO    dOOOO" << RESET << endl
-		  << BOLD_ORANGE << "\t\t\t"
-		  << "OOOOOOOOOOO    OOOOOO    OOOOOO   OOOO  OOOOOOOOOOO  OOOO    OOOOd" << RESET << endl
-		  << BOLD_ORANGE << "\t\t\t"
-		  << "OOOO   OOOO   dOOOOOOd   OOOOOOO  OOOO OOOOd   OOOOO OOOO    OOOOO" << RESET << endl
-		  << BOLD_ORANGE << "\t\t\t"
-		  << "OOOOOOOOOOO  dOOOOOOOOd  OOOOdOOOOOOOO OOOO          OOOOOOOOOOOOO" << RESET << endl
-		  << BOLD_ORANGE << "\t\t\t"
-		  << "OOOOOOOOO    OOOd  OOOO  OOOO dOOOOOOO OOOO          OOOOOOOOOOOOd" << RESET << endl
-		  << BOLD_ORANGE << "\t\t\t"
-		  << "OOOO OOOOO  OOOOOOOOOOOO OOOO   OOOOOO dOOOOOdOOOOOO OOOO    OOOOO" << RESET << endl
-		  << BOLD_ORANGE << "\t\t\t"
-		  << "OOOO  OOOOddOOOO    OOOOOOOOO    OOOOO   OOOOOOOOOO  OOOO    OOOOd" << RESET << endl;
+		<< "OOOOOOOOd       OOOO     OOOOd    OOOO    dOOOOOO    OOOO    dOOOO" << RESET << endl
+		<< BOLD_ORANGE << "\t\t\t"
+		<< "OOOOOOOOOOO    OOOOOO    OOOOOO   OOOO  OOOOOOOOOOO  OOOO    OOOOd" << RESET << endl
+		<< BOLD_ORANGE << "\t\t\t"
+		<< "OOOO   OOOO   dOOOOOOd   OOOOOOO  OOOO OOOOd   OOOOO OOOO    OOOOO" << RESET << endl
+		<< BOLD_ORANGE << "\t\t\t"
+		<< "OOOOOOOOOOO  dOOOOOOOOd  OOOOdOOOOOOOO OOOO          OOOOOOOOOOOOO" << RESET << endl
+		<< BOLD_ORANGE << "\t\t\t"
+		<< "OOOOOOOOO    OOOd  OOOO  OOOO dOOOOOOO OOOO          OOOOOOOOOOOOd" << RESET << endl
+		<< BOLD_ORANGE << "\t\t\t"
+		<< "OOOO OOOOO  OOOOOOOOOOOO OOOO   OOOOOO dOOOOOdOOOOOO OOOO    OOOOO" << RESET << endl
+		<< BOLD_ORANGE << "\t\t\t"
+		<< "OOOO  OOOOddOOOO    OOOOOOOOO    OOOOO   OOOOOOOOOO  OOOO    OOOOd" << RESET << endl;
 }
 
 void getConsoleMenu()
@@ -652,27 +945,52 @@ void clear()
 
 int main()
 {
+	BeshinchiMavzu::BirinchiTopshiriq topshiriq_1;
+	BeshinchiMavzu::IkkinchiTopshiriq topshiriq_2;
+	BeshinchiMavzu::UchunchiTopshiriq topshiriq_3;
 
 	do
 	{
 
-		getConsoleMenu(); // chunrli dagan umiddaman!
+		getConsoleMenu();
 
-		getCommandLine();			 // amaliyot qabul qiluvchi
-		cin >> TOPSHIRIQ_RAQAMI; // "getCommandLine()"da giritgan sonni Topshiriqa yukliydi.
+		getCommandLine();
+		cin >> MAVZU_RAQAMI;
 
-		switch (TOPSHIRIQ_RAQAMI)
+		switch (MAVZU_RAQAMI)
 		{
 		case 5:
 			clear();
-			BeshinchiMavzuniYuklash();
+			cout << "\n\n\n";
+			cout << getNumberAndText("01", "Birinchi Topshiriq Toplami")<<endl;
+			cout << getNumberAndText("02", "Ikkinchi Topshiriq Toplami")<<endl;
+			getCommandLine();
+			cout << ORANGE << "Topshiriq raqamini kiriting: " << RESET;
+			cin >> TOPSHIRIQ_RAQAMI;
+			switch (TOPSHIRIQ_RAQAMI)
+			{
+			case 1:
+				topshiriq_1.setBeshinchiMavzuBirinchiTopshirq();
+				break;
+			case 2:
+				topshiriq_2.setBeshinchiMavzu_IkkinchiTopshirq();
+				break;
+			case 3:
+				topshiriq_3.setBeshinchiMavzu_UchunchiTopshirq();
+				break;
+			default:
+				getCommandLine();
+				cout << RED << "Xato Topshiriq kirittingiz!" << RESET << endl;
+			}
 			break;
 
 		default:
-			cout << "Xato son kirittingiz!" << endl;
+			getCommandLine();
+			cout << RED << "Xato son kirittingiz!" << RESET << endl;
 		}
 
-		cout << "yana topshiriq ishlanadimi? (h/y): ";
+		getCommandLine();
+		cout << BLUE << "Yana topshiriq ishlanadimi? (h/y): " << RESET;
 		cin >> Sorov;
 
 	} while (Sorov == "h");
