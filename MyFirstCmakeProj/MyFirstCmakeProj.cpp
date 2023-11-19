@@ -593,8 +593,8 @@ namespace BeshinchiMavzu
 			cout << "\n\n";
 			cout << "#----------------------- Ikkinchi Topshiriq ------------------------#";
 			cout << "\n\n";
-			cout << getNumberAndText("01", "Ikkita son berilgan. Ularni raqamlari yig'indisi kattasini \n\t\t\t   toping. Sonni raqamlari yig'indisini topuvchi funksiya tuzing") << endl;
-			cout << getNumberAndText("02", "soninig") << endl;
+			cout << getNumberAndText("01", "Ikkita son berilgan. Ularni raqamlari yig'indisi kattasini \n\t\t\t      toping. Sonni raqamlari yig'indisini topuvchi funksiya tuzing") << endl;
+			cout << getNumberAndText("02", "Ikkita son berilgan. Ularning raqamlaridan soni ko'pini \n\t\t\t       toping. Sonni raqamlari sonini topuvchi funksiya tuzing.") << endl;
 			cout << getNumberAndText("03", "itenuzasini") << endl;
 			cout << getNumberAndText("04", "anituzing") << endl;
 			cout << getNumberAndText("05", "Natija") << endl;
@@ -665,12 +665,85 @@ namespace BeshinchiMavzu
 		}
 
 	private:
+		// Yig'indi qaytaruvchi funksiya (Misol 1)
+		// Chunishim bo'yicha son giritasan keyin shu son
+		// nichcha xona son akanligini topib shuni qaytarish garak
+		// masalan: 123 bilan 1234 barilgan shunda 1234 qaytadi
+		// chunki 1234 4dona raqam bo
+		int yigindisiKatta(int sonlar1, int sonlar2)
+		{
+
+			if (sonlar1 < 0 || sonlar2 < 0)
+			{
+				cout << "Manfiy raqamlar!!!" << endl;
+				return 0;
+			}
+
+			int natija1 = 0;
+			int natija2 = 0;
+
+			while (sonlar1 > 0)
+			{
+				natija1 += sonlar1 % 10;
+				sonlar1 /= 10;
+			}
+
+			while (sonlar2 > 0)
+			{
+				natija2 += sonlar2 % 10;
+				sonlar2 /= 10;
+			}
+
+			return (natija1 > natija2) ? natija1 : natija2;
+		}
+
+		int sonRaqamiKatta(int sonlar1, int sonlar2)
+		{
+
+			int son1 = abs(sonlar1);
+			int son2 = abs(sonlar2);
+
+			int son1raqmalari = static_cast<int>(log10(son1) + 1);
+			int son2raqmalari = static_cast<int>(log10(son2) + 1);
+
+			return (son1raqmalari > son2raqmalari) ? sonlar1 : sonlar2;
+		}
+
 		void Misol1()
 		{
+
+			int son1;
+			int son2;
+
+			getCommandLine();
+			cout << "Son kiriting (1 yoki 3): ";
+			cin >> son1;
+			getCommandLine();
+			cout << "Yana Son kiriting (1 yoki 3): ";
+			cin >> son2;
+
+			double natija = yigindisiKatta(son1, son2);
+
+			getCommandLine();
+			cout << GREEN << "Javob: " << natija << " Eng katta son yig'indisi!" << RESET << endl;
 		}
 
 		void Misol2()
 		{
+			int son1;
+			int son2;
+
+			getCommandLine();
+			cout << "Son kiriting (1 yoki 3): ";
+			cin >> son1;
+			getCommandLine();
+			cout << "Yana Son kiriting (1 yoki 3): ";
+			cin >> son2;
+
+			double natija = sonRaqamiKatta(son1, son2);
+
+			getCommandLine();
+			cout << GREEN << "Javob: " << natija << "Chunki shu son yig'indisi ko'p" << RESET << endl;
 		}
 
 		void Misol3()
