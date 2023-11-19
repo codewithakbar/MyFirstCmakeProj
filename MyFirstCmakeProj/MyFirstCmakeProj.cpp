@@ -28,7 +28,7 @@ string Sorov; // siklni to'xtatish uchun o'zgarivchan
 string SAV;	  // siklni to'xtatish uchun o'zgarivchan
 
 // raqam bilan textni xoshroy chiqaradon funksiya
-string getNumberAndText(string son, const string& text)
+string getNumberAndText(string son, const string &text)
 {
 	stringstream ss;
 	ss << BLUE << "\t\t\t[" << WHITE << son << RESET << BLUE << "]"
@@ -57,7 +57,6 @@ int getCommandLine()
 	cout << RED << "\nadmin@" << computerName << RESET << ":#> ";
 }
 
-
 // MAVZU 5
 namespace BeshinchiMavzu
 {
@@ -67,12 +66,10 @@ namespace BeshinchiMavzu
 	{
 
 	public:
-
 		void setBeshinchiMavzuBirinchiTopshirq()
 		{
 
 			int MISOL_RAQAMI;
-
 
 			cout << endl;
 			cout << getNumberAndText("01", "Q sonini P darajasini topuvchi funksiya tuzing.") << endl;
@@ -144,7 +141,6 @@ namespace BeshinchiMavzu
 
 			} while (SAV == "h");
 		}
-
 
 	private:
 		struct Nuqta
@@ -589,12 +585,10 @@ namespace BeshinchiMavzu
 	class IkkinchiTopshiriq
 	{
 	public:
-
 		void setBeshinchiMavzu_IkkinchiTopshirq()
 		{
 
 			int MISOL_RAQAMI;
-
 
 			cout << "\n\n";
 			cout << "#----------------------- Ikkinchi Topshiriq ------------------------#";
@@ -670,75 +664,55 @@ namespace BeshinchiMavzu
 			} while (SAV == "h");
 		}
 
-
 	private:
-
-
 		void Misol1()
 		{
-
 		}
 
 		void Misol2()
 		{
-
 		}
 
 		void Misol3()
 		{
-
 		}
 
 		void Misol4()
 		{
-
 		}
 		void Misol5()
 		{
-
 		}
 		void Misol6()
 		{
-
 		}
 		void Misol7()
 		{
-
 		}
 		void Misol8()
 		{
-
 		}
 		void Misol9()
 		{
-
 		}
 		void Misol10()
 		{
-
 		}
 		void Misol_11()
 		{
-
 		}
 		void Misol_12()
 		{
-
 		}
-
-
-
 	};
 
 	class UchunchiTopshiriq
 	{
 	public:
-
 		void setBeshinchiMavzu_UchunchiTopshirq()
 		{
 
 			int MISOL_RAQAMI;
-
 
 			cout << endl;
 			cout << getNumberAndText("01", "funksiya") << endl;
@@ -811,104 +785,85 @@ namespace BeshinchiMavzu
 			} while (SAV == "h");
 		}
 
-
 	private:
-
-
 		void Misol1()
 		{
-
 		}
 
 		void Misol2()
 		{
-
 		}
 
 		void Misol3()
 		{
-
 		}
 
 		void Misol4()
 		{
-
 		}
 		void Misol5()
 		{
-
 		}
 		void Misol6()
 		{
-
 		}
 		void Misol7()
 		{
-
 		}
 		void Misol8()
 		{
-
 		}
 		void Misol9()
 		{
-
 		}
 		void Misol10()
 		{
-
 		}
 		void Misol_11()
 		{
-
 		}
 		void Misol_12()
 		{
-
 		}
-
-
-
 	};
 
 }
-
 
 void getSatipoffMenu()
 {
 
 	cout << "\n\n";
 	cout << RED << "\t\t\t"
-		<< "(  ____ \\(  ___  )\\__   __/\\__   __/(  ____ )(  ___  )(  ____ \\(  ____ \\" << RESET << endl;
+		  << "(  ____ \\(  ___  )\\__   __/\\__   __/(  ____ )(  ___  )(  ____ \\(  ____ \\" << RESET << endl;
 	cout << RED << "\t\t\t"
-		<< "| (    \\/| (   ) |   ) (      ) (   | (    )|| (   ) || (    \\/| (    \\/" << RESET << endl;
+		  << "| (    \\/| (   ) |   ) (      ) (   | (    )|| (   ) || (    \\/| (    \\/" << RESET << endl;
 	cout << RED << "\t\t\t"
-		<< "| (_____ | (___) |   | |      | |   | (____)|| |   | || (__)   | (__" << RESET << endl;
+		  << "| (_____ | (___) |   | |      | |   | (____)|| |   | || (__)   | (__" << RESET << endl;
 	cout << RED << "\t\t\t"
-		<< "(_____  )|  ___  |   | |      | |   |  _____)| |   | ||  __)   |  __)" << RESET << endl;
+		  << "(_____  )|  ___  |   | |      | |   |  _____)| |   | ||  __)   |  __)" << RESET << endl;
 	cout << RED << "\t\t\t"
-		<< "      ) || (   ) |   | |      | |   | (      | |   | || (      | (" << RESET << endl;
+		  << "      ) || (   ) |   | |      | |   | (      | |   | || (      | (" << RESET << endl;
 	cout << RED << "\t\t\t"
-		<< "/\\____) || )   ( |   | |   ___) (___| )      | (___) || )      | )" << RESET << endl;
+		  << "/\\____) || )   ( |   | |   ___) (___| )      | (___) || )      | )" << RESET << endl;
 	cout << RED << "\t\t\t"
-		<< "\\_______)|/     \\|   )_(   \\_______/|/       (_______)|/       |/" << RESET << endl;
+		  << "\\_______)|/     \\|   )_(   \\_______/|/       (_______)|/       |/" << RESET << endl;
 
 	cout << "\n\n";
 
 	cout << BOLD_ORANGE << "\t\t\t"
-		<< "OOOOOOOOd       OOOO     OOOOd    OOOO    dOOOOOO    OOOO    dOOOO" << RESET << endl
-		<< BOLD_ORANGE << "\t\t\t"
-		<< "OOOOOOOOOOO    OOOOOO    OOOOOO   OOOO  OOOOOOOOOOO  OOOO    OOOOd" << RESET << endl
-		<< BOLD_ORANGE << "\t\t\t"
-		<< "OOOO   OOOO   dOOOOOOd   OOOOOOO  OOOO OOOOd   OOOOO OOOO    OOOOO" << RESET << endl
-		<< BOLD_ORANGE << "\t\t\t"
-		<< "OOOOOOOOOOO  dOOOOOOOOd  OOOOdOOOOOOOO OOOO          OOOOOOOOOOOOO" << RESET << endl
-		<< BOLD_ORANGE << "\t\t\t"
-		<< "OOOOOOOOO    OOOd  OOOO  OOOO dOOOOOOO OOOO          OOOOOOOOOOOOd" << RESET << endl
-		<< BOLD_ORANGE << "\t\t\t"
-		<< "OOOO OOOOO  OOOOOOOOOOOO OOOO   OOOOOO dOOOOOdOOOOOO OOOO    OOOOO" << RESET << endl
-		<< BOLD_ORANGE << "\t\t\t"
-		<< "OOOO  OOOOddOOOO    OOOOOOOOO    OOOOO   OOOOOOOOOO  OOOO    OOOOd" << RESET << endl;
+		  << "OOOOOOOOd       OOOO     OOOOd    OOOO    dOOOOOO    OOOO    dOOOO" << RESET << endl
+		  << BOLD_ORANGE << "\t\t\t"
+		  << "OOOOOOOOOOO    OOOOOO    OOOOOO   OOOO  OOOOOOOOOOO  OOOO    OOOOd" << RESET << endl
+		  << BOLD_ORANGE << "\t\t\t"
+		  << "OOOO   OOOO   dOOOOOOd   OOOOOOO  OOOO OOOOd   OOOOO OOOO    OOOOO" << RESET << endl
+		  << BOLD_ORANGE << "\t\t\t"
+		  << "OOOOOOOOOOO  dOOOOOOOOd  OOOOdOOOOOOOO OOOO          OOOOOOOOOOOOO" << RESET << endl
+		  << BOLD_ORANGE << "\t\t\t"
+		  << "OOOOOOOOO    OOOd  OOOO  OOOO dOOOOOOO OOOO          OOOOOOOOOOOOd" << RESET << endl
+		  << BOLD_ORANGE << "\t\t\t"
+		  << "OOOO OOOOO  OOOOOOOOOOOO OOOO   OOOOOO dOOOOOdOOOOOO OOOO    OOOOO" << RESET << endl
+		  << BOLD_ORANGE << "\t\t\t"
+		  << "OOOO  OOOOddOOOO    OOOOOOOOO    OOOOO   OOOOOOOOOO  OOOO    OOOOd" << RESET << endl;
 }
 
 void getConsoleMenu()
@@ -962,8 +917,8 @@ int main()
 		case 5:
 			clear();
 			cout << "\n\n\n";
-			cout << getNumberAndText("01", "Birinchi Topshiriq Toplami")<<endl;
-			cout << getNumberAndText("02", "Ikkinchi Topshiriq Toplami")<<endl;
+			cout << getNumberAndText("01", "Birinchi Topshiriq Toplami") << endl;
+			cout << getNumberAndText("02", "Ikkinchi Topshiriq Toplami") << endl;
 			getCommandLine();
 			cout << ORANGE << "Topshiriq raqamini kiriting: " << RESET;
 			cin >> TOPSHIRIQ_RAQAMI;
